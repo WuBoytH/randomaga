@@ -3,7 +3,9 @@ name: Create Release
 on:
   push:
     branches: [ main ]
-  workflow_dispatch:
+
+env:
+  PLUGIN_NAME: randomaga
 
 jobs:
   build-release:
@@ -17,11 +19,6 @@ jobs:
           PATH=$PATH:/root/.cargo/bin:/opt/devkitpro/devkitA64/bin /root/.cargo/bin/cargo-skyline skyline build --release
         env:
           HOME: /root
-      - name: Upload Plugin Artifact
-        uses: actions/upload-artifact@v3.1.0
-        with:
-          name: plugin
-          path: target/aarch64-skyline-switch/release/lib${{env.PLUGIN_NAME}}.nro
       - name: Update Release
         uses: meeDamian/github-release@2.0
         with:
