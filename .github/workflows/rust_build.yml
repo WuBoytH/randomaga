@@ -11,10 +11,7 @@ jobs:
     container:
       image: jugeeya/cargo-skyline:3.0.0-dkp-beta
     steps:
-      - name: Setup Python
-        uses: actions/setup-python@v4.3.0
-        with:
-          python-version: '3.9'
+      - uses: actions/checkout@v3.1.0
       - name: Build Release NRO
         run: |
           PATH=$PATH:/root/.cargo/bin:/opt/devkitpro/devkitA64/bin /root/.cargo/bin/cargo-skyline skyline build --release
